@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Snake Game</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            .container {
+                text-align: center;
+            }
+
+            .footer {
+                font-size: 20px;
+                font-family: "Open Sans", sans-serif;
+            }
+
+            .form {
+                margin-bottom: 10px;
+            }
+
+            .bindings {
+                list-style-type: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <canvas width="400" height="400"></canvas>
+            <div class="footer">
+                <h3>Key Bindings:</h3>
+                <ul class="bindings">
+                    <li>Arrow Keys: Moves the snake</li>
+                    <li>Space: Stop/Start</li>
+                </ul>
+            </div>
+        </div>
+
+        <script src="game.js"></script>
+    </body>
+</html>
