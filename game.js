@@ -15,8 +15,6 @@ class SnakeGame {
         this.velocityX = this.velocityY = 0;
         this.stop = false;
 
-        roundRect(this.context, 20, 40, 20, 20, 40);
-
         this.timer = setInterval(this.loop.bind(this), 1000 / 15);
     }
 
