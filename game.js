@@ -14,8 +14,10 @@ class SnakeGame {
         this.gridSize = this.tileCount = 20;
         this.velocityX = this.velocityY = 0;
         this.stop = false;
+        this.cheat = false;
+        this.fps = 10;
 
-        this.timer = setInterval(this.loop.bind(this), 1000 / 15);
+        this.timer = setInterval(this.loop.bind(this), 1000 / this.fps);
     }
 
     reset() {
@@ -46,6 +48,7 @@ class SnakeGame {
 
         this.trail.forEach((t) => {
             if (
+                !this.cheat &&
                 this.positionX === t.positionX &&
                 this.positionY === t.positionY
             ) {
@@ -100,28 +103,40 @@ class SnakeGame {
     }
 
     onKeyPress(e) {
-        if (e.keyCode === 37 && this.velocityX !== 1 && this.stop === false) {
+        // console.log(e.keyCode);
+        if (
+            (e.keyCode === 37 || e.keyCode === 65) &&
+            this.velocityX !== 1 &&
+            this.stop === false
+        ) {
             this.velocityX = -1;
             this.velocityY = 0;
         } else if (
-            e.keyCode === 38 &&
+            (e.keyCode === 38 || e.keyCode === 87) &&
             this.velocityY !== 1 &&
             this.stop === false
         ) {
             this.velocityX = 0;
             this.velocityY = -1;
         } else if (
-            e.keyCode === 39 &&
+            (e.keyCode === 39 || e.keyCode === 68) &&
             this.velocityX !== -1 &&
             this.stop === false
         ) {
             this.velocityX = 1;
             this.velocityY = 0;
-        }
-
-        if (e.keyCode === 40 && this.velocityY !== -1 && this.stop === false) {
+        } else if (
+            (e.keyCode === 40 || e.keyCode === 83) &&
+            this.velocityY !== -1 &&
+            this.stop === false
+        ) {
             this.velocityX = 0;
             this.velocityY = 1;
+        } else if (e.keyCode === 82) {
+            this.reset();
+        } else if (e.keyCode === 67) {
+            this.cheat = !this.cheat;
+            if (this.cheat) console.log("CHEAT OPENED!!!");
         }
 
         if (e.keyCode === 32) {
@@ -141,7 +156,7 @@ class SnakeGame {
 
                 this.stop = true;
             } else {
-                this.timer = setInterval(this.loop.bind(this), 1000 / 15);
+                this.timer = setInterval(this.loop.bind(this), 1000 / this.fps);
                 this.stop = false;
             }
         }
